@@ -1,0 +1,21 @@
+{
+  "name": "fcstats-persistence",
+  "version": "1.0.0",
+  "description": "fcstats persistence module",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "author": "Ovidiu Bute <ovidiu.bute@gmail.com> (http://ovidiubute.com)",
+  "license": "ISC",
+  "dependencies": {
+    "promised-io": "^0.3.5",
+    "vogels": "^2.2.0",
+    "fcstats-models": "ovidiubute/fcstats-models"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5"
+  }
+}
