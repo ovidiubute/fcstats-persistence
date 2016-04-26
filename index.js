@@ -3,8 +3,6 @@
 var vogels = require('vogels');
 var q = require('promised-io/promise');
 
-// TODO Do not Load credentials on EC2
-vogels.AWS.config.loadFromPath(__dirname + '/resources/credentials.json');
 vogels.AWS.config.update({region: "us-east-1"});
 
 function createTables () {
