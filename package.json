@@ -1,6 +1,6 @@
 {
   "name": "fcstats-persistence",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "fcstats persistence module",
   "main": "index.js",
   "private": true,
@@ -10,9 +10,9 @@
   "author": "Ovidiu Bute <ovidiu.bute@gmail.com> (http://ovidiubute.com)",
   "license": "ISC",
   "dependencies": {
-    "promised-io": "^0.3.5",
-    "vogels": "^2.2.0",
-    "fcstats-models": "ovidiubute/fcstats-models"
+    "fcstats-models": "ovidiubute/fcstats-models",
+    "lokijs": "^1.3.16",
+    "promised-io": "^0.3.5"
   },
   "devDependencies": {
     "istanbul": "^0.4.3",
