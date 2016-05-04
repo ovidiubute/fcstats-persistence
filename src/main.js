@@ -13,11 +13,11 @@ function createDatabase(fileName) {
   return deferred.promise;
 }
 
-function createTable(db, tableName) {
+function createTable(db, tableName, options) {
   var deferred = q.defer();
 
   process.nextTick(() => {
-    const table = db.addCollection(tableName);
+    const table = db.addCollection(tableName, options);
     deferred.resolve(table);
   })
 
