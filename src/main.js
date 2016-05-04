@@ -28,7 +28,7 @@ function insert(table, model) {
   var deferred = q.defer();
 
   process.nextTick(() => {
-    deferred.resolve(table.insert(model.attributes));
+    deferred.resolve(table.insert(model.toJSON()));
   });
 
   return deferred.promise;
