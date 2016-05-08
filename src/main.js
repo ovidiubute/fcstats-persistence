@@ -1,41 +1,43 @@
 "use strict";
 
 var q = require('promised-io/promise');
+var fs = require('fs');
 var loki = require('lokijs');
+var path = require('path');
+var MatchModel = require('fcstats-models').MatchModel;
 
-function createDatabase(fileName) {
+function createTable(db, tableName, options) {
+  return db.addCollection(tableName, options);
+}
+
+function loadDatabase(dbFile) {
   var deferred = q.defer();
 
-  process.nextTick(() => {
-    deferred.resolve(new loki(fileName));
+  fs.readFile(path.resolve(dbFile), (err, data) => {
+    if (err) {
+      deferred.reject(err);
+    } else {
+      let db = new loki(path.basename(dbFile));
+      let jsonData = JSON.parse(data.toString('utf8'));
+      db.loadJSONObject(jsonData);
+      deferred.resolve(db);
+    }
   });
 
   return deferred.promise;
 }
 
-function createTable(db, tableName, options) {
-  var deferred = q.defer();
-
-  process.nextTick(() => {
-    const table = db.addCollection(tableName, options);
-    deferred.resolve(table);
-  })
-
-  return deferred.promise;
+function getTable(db, tableName) {
+  return db.getCollection(tableName);
 }
 
 function insert(table, model) {
-  var deferred = q.defer();
-
-  process.nextTick(() => {
-    deferred.resolve(table.insert(model.attributes));
-  });
-
-  return deferred.promise;
+  return table.insert(model.attributes);
 }
 
 module.exports = {
   createTable: createTable,
-  createDatabase: createDatabase,
-  insert: insert
+  insert: insert,
+  loadDatabase: loadDatabase,
+  getTable: getTable
 };

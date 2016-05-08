@@ -1,3 +1,6 @@
 "use strict";
 
-module.exports = require('./src/main');
+module.exports = {
+  lib: require('./src/main'),
+  Match: require('./src/match')
+};
