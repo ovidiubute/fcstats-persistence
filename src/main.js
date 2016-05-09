@@ -27,6 +27,10 @@ function loadDatabase(dbFile) {
   return deferred.promise;
 }
 
+function newDatabase(dbName) {
+  return new loki(dbName);
+}
+
 function getTable(db, tableName) {
   return db.getCollection(tableName);
 }
@@ -39,5 +43,6 @@ module.exports = {
   createTable: createTable,
   insert: insert,
   loadDatabase: loadDatabase,
-  getTable: getTable
+  getTable: getTable,
+  newDatabase: newDatabase
 };
