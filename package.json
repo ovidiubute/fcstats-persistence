@@ -1,6 +1,6 @@
 {
   "name": "fcstats-persistence",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "fcstats persistence module",
   "main": "index.js",
   "private": true,

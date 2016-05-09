@@ -1,16 +1,27 @@
 "use strict";
 
-const util = require('util');
-const lokijs = require('lokijs');
+const _ = require('lodash');
 
 function Season (collection) {
   this.coll = collection;
 }
 
 Season.prototype.findByLeague = function (leagueName) {
-  return this.coll.find({
+  let matches = this.coll.find({
     'season.leagueName': {'$eq': leagueName}
   });
+
+  if (!matches.length) {
+    return [];
+  }
+
+  return _.sortBy(
+    _.uniqWith(matches.map((match) => {
+      return match.season;
+    }), _.isEqual), (season) => {
+      return -season.yearStart;
+    }
+  );
 }
 
 module.exports = {
@@ -18,4 +29,3 @@ module.exports = {
     return new Season(collection);
   }
 }
-
